@@ -9,9 +9,13 @@ export default defineConfig(() => {
     base: '/webgl-sketch/',
     build: {
       outDir: '../dist',
-      // rollupOptions: {
-      //   input: [path.resolve(__dirname, './src/index.html'), path.resolve(__dirname, './src/template/index.html')],
-      // },
+      rollupOptions: {
+        input: [
+          path.resolve(__dirname, './src/index.html'),
+          path.resolve(__dirname, './src/template/index.html'),
+          path.resolve(__dirname, './src/20240202/index.html'),
+        ],
+      },
     },
     plugins: [glsl()],
     server: {
