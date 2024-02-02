@@ -1,3 +1,5 @@
+// https://scrapbox.io/0b5vr/Cyclic_Noise
+
 #version 300 es
 precision highp float;
 
