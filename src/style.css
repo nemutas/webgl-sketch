@@ -7,14 +7,16 @@
 html {
   font-size: 62.5%;
   overflow: hidden;
+  background: #0e0e0e;
 }
 
 a {
   display: inline-block;
-  padding: 4px 3px;
+  padding: 5px 3px;
   font-size: 15px;
   line-height: 1;
   text-underline-offset: 2px;
+  color: #f0f0f0;
 }
 
 canvas {
