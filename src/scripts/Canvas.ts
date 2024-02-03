@@ -13,9 +13,25 @@ export class Canvas extends Three {
     super(canvas)
     this.mainScene = new MainScene(this.renderer, fragmentShader)
     this.output = this.createOutput()
+
     this.disableMatrixAutoUpdate()
-    window.addEventListener('resize', this.resize.bind(this))
-    this.renderer.setAnimationLoop(this.anime.bind(this))
+
+    this.bindAssets(canvas).then(() => {
+      window.addEventListener('resize', this.resize.bind(this))
+      this.renderer.setAnimationLoop(this.anime.bind(this))
+    })
+  }
+
+  private async bindAssets(canvas: HTMLCanvasElement) {
+    const fileName = canvas.dataset.texture
+    if (fileName) {
+      const loader = new THREE.TextureLoader()
+      const texture = await loader.loadAsync(import.meta.env.BASE_URL + `images/${fileName}`)
+      texture.wrapS = THREE.RepeatWrapping
+      texture.wrapT = THREE.RepeatWrapping
+      texture.userData.aspect = texture.source.data.width / texture.source.data.height
+      Object.assign(this.mainScene.uniforms, { image: { value: texture } })
+    }
   }
 
   private createOutput() {
