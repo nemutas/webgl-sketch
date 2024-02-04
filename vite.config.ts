@@ -16,6 +16,7 @@ export default defineConfig(() => {
           path.resolve(__dirname, './src/20240202/index.html'),
           path.resolve(__dirname, './src/20240203/index.html'),
           path.resolve(__dirname, './src/20240203_2/index.html'),
+          path.resolve(__dirname, './src/20240204/index.html'),
         ],
       },
     },
