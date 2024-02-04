@@ -1,6 +1,3 @@
-// リアルタイムグラフィックスの数学 ― GLSLではじめるシェーダプログラミング
-// hash関数：https://www.shadertoy.com/view/XlXcW4
-
 #version 300 es
 precision highp float;
 precision highp int;
@@ -68,3 +65,9 @@ void main() {
 
   outColor = vec4(vec3(c), 1.0);
 }
+
+//----------------------------
+// Reference
+//----------------------------
+// リアルタイムグラフィックスの数学 ― GLSLではじめるシェーダプログラミング
+// hash関数：https://www.shadertoy.com/view/XlXcW4
