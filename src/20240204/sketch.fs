@@ -11,11 +11,6 @@ out vec4 outColor;
 
 const float PI = acos(-1.0);
 
-mat2 rot(float a) {
-  float s = sin(a), c = cos(a);
-  return mat2(c, s, -s, c);
-}
-
 void main() {
   vec2 uv = vUv, asp = vec2(resolution.x / resolution.y, 1.0), suv = (uv * 2.0 - 1.0) * asp;
 
