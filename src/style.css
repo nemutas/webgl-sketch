@@ -25,3 +25,9 @@ canvas {
   height: 100lvh;
   background: #0e0e0e;
 }
+
+.links {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}

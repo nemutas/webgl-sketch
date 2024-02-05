@@ -9,10 +9,17 @@
   </head>
   <body style="overflow: hidden">
     <canvas data-texture="unsplash_1.webp"></canvas>
+    <div class="links">
+      <a href="/">../</a>
+      <a class="source" href="" target="_blank" rel="noopener noreferrer">source</a>
+    </div>
   </body>
+
   <script type="module" defer>
     import fs from './sketch.fs'
     import { createCanvas } from '../scripts/entry.ts'
+    import { setSourceLink } from '../scripts/utils.ts'
     createCanvas(fs)
+    setSourceLink()
   </script>
 </html>
