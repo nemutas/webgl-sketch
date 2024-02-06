@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IFS</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body style="overflow: hidden">
+    <canvas></canvas>
+    <div class="links">
+      <a href="/webgl-sketch/">../</a>
+      <a class="source" href="" target="_blank" rel="noopener noreferrer">source</a>
+    </div>
+  </body>
+
+  <script type="module" defer>
+    import fs from './sketch.fs'
+    import { createCanvas } from '../scripts/entry.ts'
+    import { setSourceLink } from '../scripts/utils.ts'
+    createCanvas(fs)
+    setSourceLink()
+  </script>
+</html>
