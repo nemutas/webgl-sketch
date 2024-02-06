@@ -38,7 +38,7 @@ float sdf(vec3 p) {
 
 void main() {
   vec2 uv = vUv, asp = resolution / min(resolution.x, resolution.y), suv = (uv - 0.5) * asp * 2.0;
-  vec3 rd = normalize(vec3(suv, -2.0)), ro = vec3(0.0, 0.0, 8.0);
+  vec3 rd = normalize(vec3(suv, -4.0 + length(suv) * 5.0)), ro = vec3(0.0, 0.0, 8.0);
 
   float t, acc;
   loop(64) {
