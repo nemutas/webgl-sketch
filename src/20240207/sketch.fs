@@ -22,13 +22,13 @@ vec3 hash(vec3 v) {
 
 void main() {
   vec2 uv = vUv, asp = resolution / min(resolution.x, resolution.y);
-  
+
   float lt = time * 30.0 / 60.0;
   float bt = floor(lt);
 
   float sp = 32.0;
   loop(i, 3) {
-    if(hash(vec3(vec2(0.1, 0.2) * float(i),  + bt)).x < 0.5) break;
+    if(hash(vec3(vec2(0.1, 0.2) * float(i), bt)).x < 0.5) break;
     sp *= 1.5;
   }
 
