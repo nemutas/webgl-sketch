@@ -11,5 +11,5 @@ export function dpr() {
   let dpr = window.devicePixelRatio
   const canvas = document.querySelector<HTMLCanvasElement>('canvas')
   if (canvas?.dataset.dpr) dpr = Number(canvas.dataset.dpr)
-  return dpr
+  return Math.min(dpr, 2)
 }

@@ -34,7 +34,6 @@ void main() {
   float tt = tanh(fract(t) * 3.0);
   
   uv = (uv - 0.5) * asp;
-  uv *= rot(-PI * 0.5 - PI * (bt + tt) * 1.0 / 12.0);
   uv = vec2(atan(uv.y, uv.x) / PI, length(uv));
   uv.y = exp(-uv.y * 3.5);
   vec2 iuv = floor(uv * 64.0);
@@ -63,11 +62,11 @@ void main() {
   float center = step(distance((vUv - 0.5) * asp + 0.5, vec2(0.5)), 0.05);
   c = sat(1.0 - c + center);
   
-  if (0.0 < mod(bt, 2.0)) {
-    c = mix(1.0 - c, c, step(uv.x * 0.5 + 0.5, fract(1.0 - tt)));
-  } else {
-    c = mix(c, 1.0 - c, step(uv.x * 0.5 + 0.5, fract(1.0 - tt)));
-  }
+  uv = (vUv - 0.5) * asp;
+  uv *= rot(-PI * 0.5 - PI * (bt + tt) * 1.0 / 12.0);
+  uv = vec2(atan(uv.y, uv.x) / PI, length(uv));
+  if (0.0 < mod(bt, 2.0)) c = mix(1.0 - c, c, step(uv.x * 0.5 + 0.5, fract(1.0 - tt)));
+  else                    c = mix(c, 1.0 - c, step(uv.x * 0.5 + 0.5, fract(1.0 - tt)));
 
   outColor = vec4(vec3(c) * 0.9, 1.0);
 }
