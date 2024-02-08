@@ -24,6 +24,7 @@ void main() {
   vec3 pos = vec3(suv, (sqrt(1.0 - dot(suv, suv)) + 0.5) / 0.5);
   vec3 normal = normalize(pos);
   if (0.0 < step(length(suv), 1.0)) uv += normal.xy * (1.0 - normal.z);
+  else uv *= 1.5;
 
   vec2 iuv = floor(uv * 64.0 * asp);
   float r = floor(iuv.y / 9.0);
