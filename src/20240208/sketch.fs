@@ -30,7 +30,6 @@ void main() {
   float r = floor(iuv.y / 9.0);
   iuv = mod(iuv, vec2(32.0, 9.0));
 
-  uint src = 0xbu;
   uint[9] rows = uint[](
     (0x0d8u << 16) + 0x202u,
     (0x505u << 16) + 0x104u,
