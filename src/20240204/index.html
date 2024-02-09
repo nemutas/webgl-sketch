@@ -17,9 +17,7 @@
 
   <script type="module" defer>
     import fs from './sketch.fs'
-    import { createCanvas } from '../scripts/entry.ts'
-    import { setSourceLink } from '../scripts/utils.ts'
-    createCanvas(fs)
-    setSourceLink()
+    import { entry } from '../scripts/entry.ts'
+    entry(fs)
   </script>
 </html>
