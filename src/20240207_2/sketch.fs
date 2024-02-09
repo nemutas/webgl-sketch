@@ -29,13 +29,12 @@ mat2 rot(float a) {
 
 void main() {
   vec2 uv = vUv, asp = resolution / min(resolution.x, resolution.y);
-  float t = time * 50.0 / 60.0;
+  float t = time * 60.0 / 60.0;
   float bt = floor(t);
-  float tt = tanh(fract(t) * 3.0);
+  float tt = tanh(fract(t) * 5.0);
   
   uv = (uv - 0.5) * asp;
-  uv = vec2(atan(uv.y, uv.x) / PI, length(uv));
-  uv.y = exp(-uv.y * 3.5);
+  uv = vec2(atan(uv.y, uv.x) / PI, 0.18 / length(uv));
   vec2 iuv = floor(uv * 64.0);
   float x = mod(floor(iuv.y / 9.0), 2.0);
   iuv = mod(iuv, vec2(32.0, 9.0));
@@ -59,7 +58,7 @@ void main() {
     c = float(b);
   }
 
-  float center = step(distance((vUv - 0.5) * asp + 0.5, vec2(0.5)), 0.05);
+  float center = smoothstep(0.2, 0.03, distance((vUv - 0.5) * asp + 0.5, vec2(0.5)));
   c = sat(1.0 - c + center);
   
   uv = (vUv - 0.5) * asp;
