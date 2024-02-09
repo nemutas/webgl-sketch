@@ -73,3 +73,5 @@ void main() {
 //----------------------------
 // Reference
 //----------------------------
+// OpenGL Tunnel Effect Shader in GLSL
+// https://youtube.com/shorts/VF2R4tRdKMI?si=lvEY5fGEvz_d5TLy
