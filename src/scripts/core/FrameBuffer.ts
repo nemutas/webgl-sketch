@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { dpr } from '../utils'
+import { params } from '../Params'
 
 export type Options = {
   dpr?: number
@@ -27,7 +27,7 @@ export abstract class FrameBuffer {
   }
 
   private get devicePixelRatio() {
-    return this.options?.dpr ?? dpr()
+    return this.options?.dpr ?? params.dpr
   }
 
   private setMatrixAutoUpdate(v: boolean) {

@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import Stats from 'three/examples/jsm/libs/stats.module.js'
-import { dpr } from '../utils'
+import { params } from '../Params'
 
 export abstract class Three {
   readonly renderer: THREE.WebGLRenderer
@@ -24,7 +24,7 @@ export abstract class Three {
   private createRenderer(canvas: HTMLCanvasElement) {
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true })
     renderer.setSize(window.innerWidth, window.innerHeight)
-    renderer.setPixelRatio(dpr())
+    renderer.setPixelRatio(params.dpr)
     return renderer
   }
 

@@ -4,6 +4,7 @@ import vertexShader from './shader/quad.vs'
 import fragmentShader from './shader/output.fs'
 import { RawShaderMaterial } from './core/ExtendedMaterials'
 import { MainScene } from './MainScene'
+import { params } from './Params'
 
 export class Canvas extends Three {
   private mainScene: MainScene
@@ -16,17 +17,17 @@ export class Canvas extends Three {
 
     this.disableMatrixAutoUpdate()
 
-    this.bindAssets(canvas).then(() => {
+    this.bindAssets().then(() => {
       window.addEventListener('resize', this.resize.bind(this))
       this.renderer.setAnimationLoop(this.anime.bind(this))
     })
   }
 
-  private async bindAssets(canvas: HTMLCanvasElement) {
-    const fileName = canvas.dataset.texture
-    if (fileName) {
+  private async bindAssets() {
+    const path = params.texturePath
+    if (path) {
       const loader = new THREE.TextureLoader()
-      const texture = await loader.loadAsync(import.meta.env.BASE_URL + `images/${fileName}`)
+      const texture = await loader.loadAsync(path)
       texture.wrapS = THREE.RepeatWrapping
       texture.wrapT = THREE.RepeatWrapping
       texture.userData.aspect = texture.source.data.width / texture.source.data.height
