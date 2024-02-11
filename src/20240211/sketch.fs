@@ -25,7 +25,7 @@ vec3 cyc(vec3 p) {
 
 float sdf(vec3 p) {
   p.y += 13.0;
-  p += cyc(p * 2.0 + lt) * 0.25;
+  p += (cyc(p * 2.0 + lt) - 0.5) * 0.25;
   float final = length(p) - 13.0;
   return final * 0.7;
 }
