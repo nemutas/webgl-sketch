@@ -7,13 +7,13 @@ uniform sampler2D backBuffer;
 uniform vec2 resolution;
 uniform vec2 mouse;
 uniform float time;
-uniform sampler2D image;
+uniform sampler2D textureUnit;
 
 in vec2 vUv;
 out vec4 outColor;
 
 vec2 coveredUv() {
-  ivec2 imgSize = textureSize(image, 0);
+  ivec2 imgSize = textureSize(textureUnit, 0);
   float imgAsp = float(imgSize.x) / float(imgSize.y);
   float screenAsp = resolution.x / resolution.y;
   vec2 covered = imgAsp < screenAsp ? vec2(1.0, imgAsp / screenAsp) : vec2(screenAsp / imgAsp, 1.0);
@@ -29,7 +29,7 @@ void main() {
   
   vec2 uv = coveredUv();
   uv.x += time * 0.1;
-  vec4 col = mix(texture(image, uv), texture(image, uv + distortion), smoothstep(1.0, 0.99, length(suv)));
+  vec4 col = mix(texture(textureUnit, uv), texture(textureUnit, uv + distortion), smoothstep(1.0, 0.99, length(suv)));
 
   outColor = col;
 }

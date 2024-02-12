@@ -10,7 +10,7 @@ class Params {
 
   get texturePath() {
     if (this.data_texture) {
-      return import.meta.env.BASE_URL + `images/${this.data_texture}`
+      return import.meta.env.BASE_URL + `textures/${this.data_texture}`
     } else {
       return null
     }

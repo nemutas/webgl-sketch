@@ -31,7 +31,7 @@ export class Canvas extends Three {
       texture.wrapS = THREE.RepeatWrapping
       texture.wrapT = THREE.RepeatWrapping
       texture.userData.aspect = texture.source.data.width / texture.source.data.height
-      Object.assign(this.mainScene.uniforms, { image: { value: texture } })
+      Object.assign(this.mainScene.uniforms, { textureUnit: { value: texture } })
     }
   }
 
