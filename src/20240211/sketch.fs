@@ -23,9 +23,15 @@ vec3 cyc(vec3 p) {
   return n.xyz / n.w;
 }
 
+mat2 rot(float a) {
+  float s = sin(a), c = cos(a);
+  return mat2(c, s, -s, c);
+}
+
 float sdf(vec3 p) {
   p.y += 13.0;
-  p += (cyc(p * 2.0 + lt) - 0.5) * 0.25;
+  p.yz *= rot(-time * 0.01);
+  p += cyc(p * 2.0 + lt) * 0.25;
   float final = length(p) - 13.0;
   return final * 0.7;
 }
@@ -50,7 +56,10 @@ void main() {
 
   float c = acc / 80.0 * 1.5;
 
-  outColor = vec4(vec3(c), 1.0);
+  vec4 b = texture(backBuffer, vUv);
+  vec3 col = mix(vec3(c), b.rgb, 0.7);
+
+  outColor = vec4(col, 1.0);
 }
 
 //----------------------------
