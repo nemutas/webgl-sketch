@@ -33,7 +33,7 @@ float sdf(vec3 p) {
   p.yz *= rot(-time * 0.01);
   p += cyc(p * 2.0 + lt) * 0.25;
   float final = length(p) - 13.0;
-  return final * 0.7;
+  return final * 0.6;
 }
 
 void main() {
@@ -51,10 +51,10 @@ void main() {
     float d = sdf(p);
     if (d < 1e-4 || 1e4 < t) break;
     t += d;
-    acc += exp(abs(d) * -3.0);
+    acc += exp(abs(d) * -5.0);
   }
 
-  float c = acc / 80.0 * 1.5;
+  float c = acc / 80.0;
 
   vec4 b = texture(backBuffer, vUv);
   vec3 col = mix(vec3(c), b.rgb, 0.7);
