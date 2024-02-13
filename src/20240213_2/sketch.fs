@@ -101,7 +101,7 @@ void main() {
   }
 
   float c;
-  if (h.y < 0.6) c = acc / 64.0 * 0.5;
+  if (h.y < 0.8) c = acc / 64.0 * 0.5;
   else c = fwidth(acc) * 0.02;
 
   float sc = step(fract(suv.y * 40.0 - fract(time) * 10.0), 0.8);
@@ -109,7 +109,7 @@ void main() {
 
   vec4 b = texture(backBuffer, vUv);
   vec3 col = vec3(sat(c), b.rg);
-  col = mix(col, b.rgb, 0.5);
+  col = mix(col, b.rgb, 0.5) * 1.08;
 
   outColor = vec4(col, 1.0);
 }
