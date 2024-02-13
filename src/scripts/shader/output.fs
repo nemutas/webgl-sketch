@@ -7,5 +7,5 @@ in vec2 vUv;
 out vec4 outColor;
 
 void main() {
-  outColor = texture(tSource, vUv);
+  outColor = vec4(texture(tSource, vUv).rgb, 1.0);
 }
