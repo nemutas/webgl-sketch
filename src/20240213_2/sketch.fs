@@ -79,11 +79,8 @@ void main() {
   suv.x += sin(suv.y * 1000.0 + ft * 100.0 ) * 0.005;
   vec2 fuv = floor(suv * vec2(1, 1.5) * 2.0);
   vec3 fh = hash(vec3(fuv, time));
-  if (fh.x < 0.1) suv.x += sign(fh.y) * 0.05;
-
-  if (0.0 < mod(floor(suv.y * 0.8 - ft), 2.0)) {
-    suv.x += 0.05;
-  }
+  if (fh.x < 0.1 && h.x < 0.9) suv.x += sign(fh.y) * 0.05;
+  if (0.0 < mod(floor(suv.y * 0.7 - time * 0.5), 2.0)) suv.x += sign(fh.z) * 0.05;
 
   vec3 rd = normalize(vec3(suv, -5.0 + length(suv) * 2.0)), ro = vec3(0.0, 0.0, 7.0);
 
