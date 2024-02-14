@@ -19,14 +19,6 @@ mat2 rot(float a) {
   return mat2(c, s, -s, c);
 }
 
-vec3 hash(vec3 v) {
-  uvec3 x = floatBitsToUint(v + vec3(0.1, 0.2, 0.3));
-  x = (x >> 8 ^ x.zxy) * 0x456789ABu;
-  x = (x >> 8 ^ x.zxy) * 0x6789AB45u;
-  x = (x >> 8 ^ x.zxy) * 0x89AB4567u;
-  return vec3(x) / vec3(-1u);
-}
-
 float box(vec3 p, vec3 b) {
   p = abs(p) - b;
   return max(p.x, max(p.y, p.z));
