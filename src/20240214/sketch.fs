@@ -47,7 +47,7 @@ void main() {
   loop(64) {
     vec3 p = rd * t + ro;
     float d = sdf(p) * 0.7;
-    if (d < 1e-4 || 1e5 < t) break;
+    if (d < 1e-4 || 1e4 < t) break;
     t += d;
     acc += exp(abs(d) * -20.0);
   }
@@ -56,7 +56,7 @@ void main() {
 
   vec4 b = texture(backBuffer, uv);
   vec3 col = vec3(sat(c), b.rg);
-  col = mix(col, b.rgb, 0.3);
+  col = mix(col, b.rgb, 0.3) * 1.1;
 
   outColor = vec4(col, 1.0);
 }
