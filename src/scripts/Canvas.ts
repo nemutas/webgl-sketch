@@ -60,6 +60,7 @@ export class Canvas extends Three {
   }
 
   private anime() {
+    if (params.enableStats) this.stats.update()
     this.updateTime()
 
     this.mainScene.render(this.time.delta)
