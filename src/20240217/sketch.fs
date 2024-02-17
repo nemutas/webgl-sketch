@@ -9,8 +9,6 @@ uniform float time;
 in vec2 vUv;
 out vec4 outColor;
 
-vec3 bh;
-
 #define loop(n) for(int i; i < n; i++)
 
 mat2 rot(float a) {
@@ -34,13 +32,11 @@ float box(vec3 p, vec3 b) {
 float sdf(vec3 p) {
   float d = 1e9;
 
-  if (bh.x < 0.7) {
-    p.xy *= rot(time * 0.5);
-    p.yz *= rot(time * 0.4);
-    p.zx *= rot(time * 0.3);
-  }
+  p.xy *= rot(time * 0.5);
+  p.yz *= rot(time * 0.4);
+  p.zx *= rot(time * 0.3);
 
-  vec2 cb = vec2(0.45, 1.0);
+  vec2 cb = vec2(0.48, 1.0);
   d = min(d, box(p, cb.xxy));
   d = min(d, box(p, cb.xyx));
   d = min(d, box(p, cb.yxx));
@@ -52,10 +48,6 @@ void main() {
   vec2 uv = vUv, asp = resolution / min(resolution.x, resolution.y), suv = (uv * 2.0 - 1.0) * asp;
   suv = floor(suv * 50.0) / 50.0;
   vec3 rd = normalize(vec3(suv, -5.0)), ro = vec3(0.0, 0.0, 5.0);
-
-  float lt = time * 100.0 / 60.0;
-  float bt = floor(lt);
-  bh = hash(vec3(bt));
 
   float t;
   loop(64) {
