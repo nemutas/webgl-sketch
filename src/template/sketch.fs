@@ -5,6 +5,7 @@ uniform sampler2D backBuffer;
 uniform vec2 resolution;
 uniform vec2 mouse;
 uniform float time;
+uniform int frame;
 
 in vec2 vUv;
 out vec4 outColor;

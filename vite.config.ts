@@ -2,6 +2,11 @@ import path from 'path'
 import { defineConfig } from 'vite'
 import glsl from 'vite-plugin-glsl'
 
+function resolvedPath(root: string) {
+  const r = root !== '' ? `/${root}` : ''
+  return path.resolve(__dirname, `./src${r}/index.html`)
+}
+
 export default defineConfig(() => {
   return {
     root: './src',
@@ -11,26 +16,27 @@ export default defineConfig(() => {
       outDir: '../dist',
       rollupOptions: {
         input: [
-          path.resolve(__dirname, './src/index.html'),
-          path.resolve(__dirname, './src/template/index.html'),
-          path.resolve(__dirname, './src/20240202/index.html'),
-          path.resolve(__dirname, './src/20240203/index.html'),
-          path.resolve(__dirname, './src/20240203_2/index.html'),
-          path.resolve(__dirname, './src/20240204/index.html'),
-          path.resolve(__dirname, './src/20240204_2/index.html'),
-          path.resolve(__dirname, './src/20240205/index.html'),
-          path.resolve(__dirname, './src/20240206/index.html'),
-          path.resolve(__dirname, './src/20240206_2/index.html'),
-          path.resolve(__dirname, './src/20240207/index.html'),
-          path.resolve(__dirname, './src/20240207_2/index.html'),
-          path.resolve(__dirname, './src/20240208/index.html'),
-          path.resolve(__dirname, './src/20240210/index.html'),
-          path.resolve(__dirname, './src/20240211/index.html'),
-          path.resolve(__dirname, './src/20240213/index.html'),
-          path.resolve(__dirname, './src/20240213_2/index.html'),
-          path.resolve(__dirname, './src/20240214/index.html'),
-          path.resolve(__dirname, './src/20240217/index.html'),
-        ],
+          '',
+          'template',
+          '20240202',
+          '20240203',
+          '20240203_2',
+          '20240204',
+          '20240204_2',
+          '20240205',
+          '20240206',
+          '20240206_2',
+          '20240207',
+          '20240207_2',
+          '20240208',
+          '20240210',
+          '20240211',
+          '20240213',
+          '20240213_2',
+          '20240214',
+          '20240217',
+          '20240218',
+        ].map((str) => resolvedPath(str)),
       },
     },
     plugins: [glsl()],
