@@ -24,14 +24,22 @@ export class Canvas extends Three {
   }
 
   private async bindAssets() {
-    const path = params.texturePath
-    if (path) {
+    const texturePath = params.texturePath
+    if (texturePath) {
       const loader = new THREE.TextureLoader()
-      const texture = await loader.loadAsync(path)
+      const texture = await loader.loadAsync(texturePath)
       texture.wrapS = THREE.RepeatWrapping
       texture.wrapT = THREE.RepeatWrapping
       texture.userData.aspect = texture.source.data.width / texture.source.data.height
       Object.assign(this.mainScene.uniforms, { textureUnit: { value: texture } })
+    }
+
+    const cubeMapPath = params.cubeMapPath
+    if (cubeMapPath) {
+      const loader = new THREE.CubeTextureLoader()
+      loader.setPath(cubeMapPath)
+      const texture = await loader.loadAsync(['px', 'nx', 'py', 'ny', 'pz', 'nz'].map((f) => f + '.webp'))
+      Object.assign(this.mainScene.uniforms, { cubeTextureUnit: { value: texture } })
     }
   }
 
