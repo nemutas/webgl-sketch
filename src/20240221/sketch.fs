@@ -19,13 +19,6 @@ mat2 rot(float a) {
   return mat2(c, s, -s, c);
 }
 
-vec2 pmod(vec2 p, float r) {
-  float n = PI * 2.0 / r;
-  float a = atan(p.x, p.y) - n * 0.5;
-  a = floor(a / n) * n;
-  return p * rot(a);
-}
-
 void main() {
   vec2 uv = vUv, asp = resolution / min(resolution.x, resolution.y), suv = (uv * 2.0 - 1.0) * asp;
 
