@@ -28,9 +28,16 @@ void main() {
 
   suv *= 1.0 - length(suv) * (1.0 - tt);
 
-  vec2 z = suv * rot(PI * 0.5) * 0.5, c = vec2(0.25, 0.58) * (tt * tt * 0.05 + 0.95);
-  if (mod(bt, 2.0) == 0.0) {
-    z = vec2(0) + ((1.0 - tt * tt) * 0.5), c = suv + vec2(-0.5, 0.0);
+  vec2 z, c;
+  if (mod(bt, 3.0) == 0.0) {
+    z = vec2(0) + ((1.0 - tt * tt) * 0.5);
+    c = suv + vec2(-0.5, 0.0);
+  } else if (mod(bt, 3.0) == 1.0) {
+    z = suv * rot(PI * 0.5) * 0.5;
+    c = vec2(0.25, 0.58) * (tt * tt * 0.05 + 0.95);
+  } else {
+    z = suv * rot(PI * 0.5) * 0.5;
+    c = vec2(0.25, 0.6) * (tt * tt * 0.05 + 0.95) + (suv + 0.3) * 0.07;
   }
 
   float j;
@@ -41,7 +48,7 @@ void main() {
   }
 
   float lum = j / 80.0;
-  lum = smoothstep(0.1, 1.0, lum);
+  lum = smoothstep(0.15, 1.0, lum);
 
   outColor = vec4(vec3(lum), 1.0);
 }
