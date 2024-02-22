@@ -23,7 +23,7 @@ vec3 hash(vec3 v) {
 void main() {
   vec2 uv = vUv, asp = resolution / min(resolution.x, resolution.y);
   float n = 100.0;
-  vec2 fuv = floor(uv * asp * n + 0.5) / n / asp;
+  vec2 fuv = (floor(uv * asp * n) + 0.5) / n / asp;
   vec2 px = 1.0 / n / asp;
 
   float cell;
@@ -31,7 +31,6 @@ void main() {
     cell = step(hash(vec3(fuv, 0.1)).x, 0.5);
   } else {
     if (frame % 5 == 0) {
-      bool c = 0.5 < texture(backBuffer, fuv).a;
       float r;
       for (float ix = -1.0; ix <= 1.0; ix++) {
         for (float iy = -1.0; iy <= 1.0; iy++) {
@@ -40,7 +39,7 @@ void main() {
         }
       }
 
-      if (c) {
+      if (0.5 < texture(backBuffer, fuv).a) {
         if (r == 2.0 || r == 3.0) cell = 1.0;
         else if (r <= 1.0) cell = 0.0;
         else if (4.0 <= r) cell = 0.0;
@@ -56,9 +55,9 @@ void main() {
   vec3 col = vec3(cell, b.rg);
   col = mix(col, b.rgb, 0.5);
 
-  vec2 m = floor((mouse * 0.5 + 0.5) * asp * n + 0.5) / n / asp;
-  vec2 d = step(distance(m * asp, fuv * asp), px * 2.0);
   if (frame % 5 == 0) {
+    vec2 m = (floor((mouse * 0.5 + 0.5) * asp * n) + 0.5) / n / asp;
+    vec2 d = step(distance(m * asp, fuv * asp), px * 2.0);
     cell += float(hash(vec3(d, float(frame))).x < 0.5) * length(d);
     cell = sat(cell);
   }
