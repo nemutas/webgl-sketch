@@ -41,14 +41,14 @@ void main() {
   }
 
   float j;
-  loop(100) {
+  loop(70) {
     z = vec2(z.x * z.x - z.y * z.y,  2.0 * z.x * z.y) + c;
     if (4.0 < dot(z, z)) break;
     j++;
   }
 
-  float lum = j / 80.0;
-  lum = smoothstep(0.15, 1.0, lum);
+  float lum = j / 60.0;
+  lum = smoothstep(0.35, 1.0, lum);
 
   outColor = vec4(vec3(lum), 1.0);
 }
