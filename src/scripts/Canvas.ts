@@ -5,15 +5,16 @@ import fragmentShader from './shader/output.fs'
 import { RawShaderMaterial } from './core/ExtendedMaterials'
 import { MainScene } from './MainScene'
 import { params } from './Params'
+import { mouse2d } from './Mouse2D'
 
 export class Canvas extends Three {
   private mainScene: MainScene
   private output: THREE.Mesh<THREE.PlaneGeometry, THREE.RawShaderMaterial, THREE.Object3DEventMap>
 
-  constructor(canvas: HTMLCanvasElement, fragmentShader: string) {
+  constructor(canvas: HTMLCanvasElement, mainFs: string, outputFs?: string) {
     super(canvas)
-    this.mainScene = new MainScene(this.renderer, fragmentShader)
-    this.output = this.createOutput()
+    this.mainScene = new MainScene(this.renderer, mainFs)
+    this.output = this.createOutput(outputFs ?? fragmentShader)
 
     this.disableMatrixAutoUpdate()
 
@@ -43,14 +44,18 @@ export class Canvas extends Three {
     }
   }
 
-  private createOutput() {
+  private createOutput(fs: string) {
     const geometry = new THREE.PlaneGeometry(2, 2)
     const material = new RawShaderMaterial({
       uniforms: {
-        tSource: { value: null },
+        source: { value: null },
+        resolution: { value: [this.size.width, this.size.height] },
+        mouse: { value: mouse2d.position },
+        time: { value: 0 },
+        frame: { value: 0 },
       },
       vertexShader,
-      fragmentShader,
+      fragmentShader: fs,
       glslVersion: '300 es',
     })
     const mesh = new THREE.Mesh(geometry, material)
@@ -63,7 +68,14 @@ export class Canvas extends Three {
     this.scene.traverse((o) => (o.matrixAutoUpdate = false))
   }
 
+  private get uniforms() {
+    return this.output.material.uniforms
+  }
+
   private resize() {
+    this.uniforms.resolution.value = [this.size.width, this.size.height]
+    this.uniforms.time.value = 0
+    this.uniforms.frame.value = 0
     this.mainScene.resize()
   }
 
@@ -73,7 +85,10 @@ export class Canvas extends Three {
 
     this.mainScene.render(this.time.delta)
 
-    this.output.material.uniforms.tSource.value = this.mainScene.texture
+    this.uniforms.source.value = this.mainScene.texture
+    this.uniforms.mouse.value = mouse2d.position
+    this.uniforms.time.value += this.time.delta
+    this.uniforms.frame.value += 1
     this.render()
   }
 }

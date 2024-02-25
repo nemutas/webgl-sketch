@@ -18,6 +18,7 @@ export default defineConfig(() => {
         input: [
           '',
           'template',
+          'template_postprocessing',
           '20240202',
           '20240203',
           '20240203_2',
@@ -38,6 +39,7 @@ export default defineConfig(() => {
           '20240218',
           '20240219',
           '20240221',
+          '20240225',
         ].map((str) => resolvedPath(str)),
       },
     },

@@ -1,8 +1,8 @@
 import { Canvas } from './Canvas'
 
-export function entry(fragmentShader: string) {
+export function entry(fragmentShader: string, outputFs?: string) {
   setSourceLink()
-  new Canvas(document.querySelector<HTMLCanvasElement>('canvas')!, fragmentShader)
+  new Canvas(document.querySelector<HTMLCanvasElement>('canvas')!, fragmentShader, outputFs)
 }
 
 function setSourceLink() {
