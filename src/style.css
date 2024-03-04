@@ -10,6 +10,7 @@ html {
 }
 
 a {
+  position: relative;
   display: inline-block;
   padding: 5px 3px;
   font-size: 15px;
@@ -30,4 +31,24 @@ canvas {
   position: absolute;
   bottom: 5px;
   right: 10px;
+}
+
+.tmp {
+  color: #fff4;
+}
+
+.sketches {
+  padding: 5px;
+}
+
+.sketches a::before {
+  position: absolute;
+  content: '';
+  width: 1px;
+  height: 50vh;
+  /* height: 90vh; */
+  background: linear-gradient(to bottom, #fff1 80%, transparent 100%);
+  right: 2px;
+  top: calc(100% - 7px);
+  pointer-events: none;
 }
