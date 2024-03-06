@@ -16,8 +16,6 @@ out vec4 outColor;
 void main() {
   vec2 uv = vUv, asp = resolution / min(resolution.x, resolution.y), suv = (uv * 2.0 - 1.0) * asp;
 
-  
-
   float dt = time - prevTime;
   float d, n = 15.0;
   for (float i = 0.0; i < n; i++) {
