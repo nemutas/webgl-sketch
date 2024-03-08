@@ -44,6 +44,7 @@ export default defineConfig(() => {
           '20240304',
           '20240306',
           '20240306_2',
+          '20240308',
         ].map((str) => resolvedPath(str)),
       },
     },
