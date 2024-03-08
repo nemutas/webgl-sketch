@@ -33,6 +33,7 @@ void main() {
   vec2 uv = vUv, asp = resolution / min(resolution.x, resolution.y), suv = (uv * 2.0 - 1.0) * asp;
   vec4 b = texture(backBuffer, uv);
 
+  float fps = round(1.0 / (time - prevTime));
   // float speed = 0.1;
   float speed = 3.0; // star
   // float speed = 2.0; // rectangle
