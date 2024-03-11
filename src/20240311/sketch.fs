@@ -11,10 +11,6 @@ uniform int frame;
 in vec2 vUv;
 out vec4 outColor;
 
-#define sat(v) clamp(v, 0.0, 1.0)
-
-const float PI = acos(-1.0);
-
 vec3 hash(vec3 v) {
   uvec3 x = floatBitsToUint(v + vec3(0.1, 0.2, 0.3));
   x = (x >> 8 ^ x.yzx) * 0x456789ABu;
