@@ -43,8 +43,8 @@ export abstract class FrameBuffer {
     const rt = new THREE.WebGLRenderTarget(this.size.width, this.size.height, {
       type: this.options?.type ?? THREE.UnsignedByteType,
       generateMipmaps: false,
-      minFilter: THREE.NearestFilter,
-      magFilter: THREE.NearestFilter,
+      minFilter: params.filterType,
+      magFilter: params.filterType,
       wrapS: THREE.RepeatWrapping,
       wrapT: THREE.RepeatWrapping,
     })

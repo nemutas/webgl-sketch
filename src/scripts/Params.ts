@@ -1,8 +1,11 @@
+import * as THREE from 'three'
+
 class Params {
   private data_texture?: string
   private data_dpr?: string
   private data_stats?: string
   private data_cubemap?: string
+  private data_filter?: string
 
   constructor() {
     const canvas = document.querySelector<HTMLCanvasElement>('canvas')!
@@ -10,6 +13,7 @@ class Params {
     this.data_dpr = canvas.dataset.dpr
     this.data_stats = canvas.dataset.stats
     this.data_cubemap = canvas.dataset.cubemap
+    this.data_filter = canvas.dataset.filter
   }
 
   get texturePath() {
@@ -35,6 +39,10 @@ class Params {
 
   get enableStats() {
     return Boolean(this.data_stats)
+  }
+
+  get filterType() {
+    return this.data_filter === 'linear' ? THREE.LinearFilter : THREE.NearestFilter
   }
 }
 
