@@ -50,15 +50,13 @@ void main() {
   for (int i = 0; i < 4; i++) {
     fuv = fract(quv);
     iuv = floor(quv);
-    if ((h = h21(iuv, float(i) + bt + seed)).x < 0.4) break;
+    if ((h = h21(iuv, float(i) + bt)).x < 0.4) break;
     quv *= 2.0;
   }
 
-  vec3 ht = h21(iuv, floor(time * 10.0));
-
   vec2 mapUv = fuv;
-  mapUv += (ht.xy * 2.0 - 1.0) * 0.02;
-  mapUv = (mapUv - 0.5) * rot(floor(h21(iuv, bt + seed + 0.1).x * 4.0) / 4.0 * PI * 2.0) + 0.5;
+  mapUv += (h21(iuv, floor(time * 10.0)).xy * 2.0 - 1.0) * 0.02;
+  mapUv = (mapUv - 0.5) * rot(floor(h21(iuv, bt).x * 4.0) / 4.0 * PI * 2.0) + 0.5;
   mapUv.x = floor(h.y * tAspect) / tAspect + mapUv.x / tAspect;
   vec4 text = texture(textureUnit, mapUv);
   vec3 txt = text.rgb * text.a;
