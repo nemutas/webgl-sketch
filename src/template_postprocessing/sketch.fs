@@ -7,6 +7,7 @@ uniform vec2 mouse;
 uniform float time;
 uniform float prevTime;
 uniform int frame;
+uniform float seed;
 
 in vec2 vUv;
 out vec4 outColor;

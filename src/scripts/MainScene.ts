@@ -13,6 +13,7 @@ export class MainScene extends BackBuffer {
         time: { value: 0 },
         prevTime: { value: 0 },
         frame: { value: 0 },
+        seed: { value: Math.random() },
       },
       vertexShader,
       fragmentShader,
