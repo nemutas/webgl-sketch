@@ -7,7 +7,6 @@ uniform vec2 mouse;
 uniform float time;
 uniform float prevTime;
 uniform int frame;
-uniform float seed;
 uniform sampler2D textureUnit;
 
 in vec2 vUv;
@@ -15,6 +14,7 @@ out vec4 outColor;
 
 #define h21(v2, s) hash(vec3(v2, s))
 const float PI = acos(-1.0);
+const float SEED = SEED_VALUE;
 
 vec3 hash(vec3 v) {
   uvec3 x = floatBitsToUint(v + vec3(0.1, 0.2, 0.3));
@@ -50,13 +50,13 @@ void main() {
   for (int i = 0; i < 4; i++) {
     fuv = fract(quv);
     iuv = floor(quv);
-    if ((h = h21(iuv, float(i) + bt + 0.4)).x < 0.4) break;
+    if ((h = h21(iuv, float(i) + bt + 0.4 + SEED)).x < 0.4) break;
     quv *= 2.0;
   }
 
   vec2 mapUv = fuv;
   mapUv += (h21(iuv, floor(time * 10.0)).xy * 2.0 - 1.0) * 0.02;
-  mapUv = (mapUv - 0.5) * rot(floor(h21(iuv, bt).x * 4.0) / 4.0 * PI * 2.0) + 0.5;
+  mapUv = (mapUv - 0.5) * rot(floor(h21(iuv, bt + SEED).x * 4.0) / 4.0 * PI * 2.0) + 0.5;
   mapUv.x = floor(h.y * tAspect) / tAspect + mapUv.x / tAspect;
   vec4 text = texture(textureUnit, mapUv);
   vec3 txt = text.rgb * text.a;

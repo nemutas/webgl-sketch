@@ -5,6 +5,8 @@ import vertexShader from './shader/quad.vs'
 
 export class MainScene extends BackBuffer {
   constructor(renderer: THREE.WebGLRenderer, fragmentShader: string) {
+    fragmentShader = fragmentShader.replace('SEED_VALUE', Math.random().toFixed(5))
+
     const material = new RawShaderMaterial({
       uniforms: {
         backBuffer: { value: null },
@@ -13,7 +15,6 @@ export class MainScene extends BackBuffer {
         time: { value: 0 },
         prevTime: { value: 0 },
         frame: { value: 0 },
-        seed: { value: Math.trunc(Math.random() * 10000) / 10000 },
       },
       vertexShader,
       fragmentShader,
