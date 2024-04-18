@@ -39,7 +39,7 @@ void main() {
   float tAspect = float(tSize.x) / float(tSize.y);
   vec4 b = texture(backBuffer, uv);
 
-  float lt = time * 20.0 / 60.0;
+  float lt = time * 15.0 / 60.0;
   float bt = floor(lt);
   float tt = easeInOutCubic(tanh(fract(lt) * 3.0));
   // float tt = tanh(fract(lt) * 5.0);
