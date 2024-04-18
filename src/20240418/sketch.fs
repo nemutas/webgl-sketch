@@ -30,9 +30,8 @@ mat2 rot(float a) {
 }
 
 float easeInOutCubic(float x) {
-    return x < 0.5 ? 4.0 * x * x * x : 1.0 - pow(-2.0 * x + 2.0, 3.0) / 2.0;
+  return x < 0.5 ? 4.0 * x * x * x : 1.0 - pow(-2.0 * x + 2.0, 3.0) / 2.0;
 }
-
 
 void main() {
   vec2 uv = vUv, asp = resolution / min(resolution.x, resolution.y), suv = (uv * 2.0 - 1.0) * asp;
@@ -48,7 +47,7 @@ void main() {
 
   vec2 quv = suv, fuv, iuv;
   vec3 h;
-  for(int i = 0; i < 4; i++) {
+  for (int i = 0; i < 4; i++) {
     fuv = fract(quv);
     iuv = floor(quv);
     if ((h = h21(iuv, float(i) + bt + seed)).x < 0.4) break;
@@ -66,7 +65,7 @@ void main() {
 
   vec2 auv = abs(fuv * 2.0 - 1.0);
   txt *= step(auv.x, 0.9) * step(auv.y, 0.9);
-  
+
   txt *= 1.0 - h21(uv, time).x * 0.3;
   txt *= 1.0 - step(h21(floor(uv * vec2(1000, 0)), time).x, 0.5) * 0.3;
 
