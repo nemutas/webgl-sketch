@@ -50,7 +50,7 @@ void main() {
   for (int i = 0; i < 4; i++) {
     fuv = fract(quv);
     iuv = floor(quv);
-    if ((h = h21(iuv, float(i) + bt + 0.4 + SEED)).x < 0.4) break;
+    if ((h = h21(iuv, float(i + 1) + bt + SEED)).x < 0.4) break;
     quv *= 2.0;
   }
 
