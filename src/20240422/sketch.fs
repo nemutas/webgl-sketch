@@ -38,7 +38,8 @@ void main() {
   lt = bt + tt;
 
   vec2 quv = suv * asp, fuv, iuv;
-  quv *= rot(PI * 0.1 + quv.y * 0.315);
+  // quv *= rot(PI * 0.1 + quv.y * 0.315);
+  quv *= rot(PI * SEED + quv.y * 0.315);
   quv.x -= lt * 0.5;
 
   vec3 h;
@@ -56,7 +57,8 @@ void main() {
   float qScale = pow(2.0, i);
 
   vec2 sfuv = fuv * 2.0 - 1.0, auv = abs(sfuv);
-  float edge = step(auv.x, 1.0 - 0.01 * qScale) * step(auv.y, 1.0 - 0.01 * qScale);
+  float thin = 1.0 - 0.005 * qScale;
+  float edge = smoothstep(thin, thin - 0.01 * qScale, auv.x) * smoothstep(thin, thin - 0.01 * qScale, auv.y);
   float disc = smoothstep(0.015 * qScale, (0.015 + 0.005) * qScale, length(sfuv));
   float marker = edge * disc;
   if (h.y < 0.1) marker = 0.0;
